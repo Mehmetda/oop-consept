@@ -4,23 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static paket2.öğretmenişlem.kayıt;
+import static paket2.İŞLEMLER.İşlemler;
 
-public class İŞLEMLER {
-    static List<öğrencikayıt> okulum=new ArrayList<>();
+public class öğretmenişlem {
+    static List<öğretmen> okulum=new ArrayList<>();
     static Scanner scan=new Scanner(System.in);
     public static void main(String[] args) {
-        İşlemler();
 
     }
-
-     public  static void İşlemler() {
+    public static void kayıt(){
         System.out.println("2. ============= İŞLEMLER =============\n" +
                 "            1-EKLEME\n" +
                 "\t\t 2-ARAMA\n" +
                 "\t\t 3-LİSTELEME\n" +
                 "\t\t 4-SİLME\n" +
-                "    Q-ÇIKIŞ"+"\n5-ÖĞRETMEN KAYDA DÖNME"+"\nistediğiniz işleme göre numaraya basınız!!!");
+                "    Q-ÇIKIŞ"+"\t\t5-ÖĞRENCİ İŞLEMLERİ"+"\nistediğiniz işleme göre numaraya basınız!!!");
         boolean devam=true;
         while (devam) {
             int seçim=0;
@@ -50,7 +48,7 @@ public class İŞLEMLER {
                 case 4:
                     silme();
                 case 5:
-                    kayıt();
+                    İşlemler();
 
                 default:
                     System.out.println("yanlış rakam girdiniz lütfen tekrar giriniz:");
@@ -70,11 +68,11 @@ public class İŞLEMLER {
             if(tc==okulum.get(i).getKimlikno()){
                 okulum.remove(i);
                 System.out.println(okulum);
-                İşlemler();
+                kayıt();
             }
             else{
                 System.out.println("böyle bir öğrenci bulunmamaktadır:");
-                İşlemler();
+                kayıt();
             }
         }
 
@@ -86,7 +84,7 @@ public class İŞLEMLER {
             System.out.println();
 
         }
-        İşlemler();
+        kayıt();
     }
 
     private static void arama() {
@@ -95,11 +93,11 @@ public class İŞLEMLER {
         for (int i = 0; i <okulum.size() ; i++) {
             if(okulum.get(i).getKimlikno()==tc){
                 System.out.println(okulum.get(i));
-                İşlemler();
+                kayıt();
             }
             else{
                 System.out.println("böyle bir öğrenci sınıfta bulunmamaktadır!!!");
-                İşlemler();
+                kayıt();
             }
 
         }
@@ -119,32 +117,10 @@ public class İŞLEMLER {
         int numara=scan.nextInt();
         System.out.println("lütfen sınıfı giriniz:");
         int sınıfı=scan.nextInt();
-        öğrencikayıt öğrenci=new öğrencikayıt(ad,soyad,kimlik,yaş,numara,sınıfı);
-        okulum.add(öğrenci);
-        İşlemler();
+        öğretmen öğret=new öğretmen(ad,soyad,kimlik,yaş,numara,sınıfı);
+        okulum.add(öğret);
+        kayıt();
+
+
     }
-     /* ÖĞRENCİ YÖNETİM PLATFORMU KODLAYINIZ.
-            1. BU PROGRAMDA ÖĞRENCİ KAYITLARI İLE İLGİLİ İŞLEMLER
-            YAPILABİLMEKTEDİR. KAYITLARDA ŞU BİLGİLER OLMALIDIR:
-
-            -AD SOYAD
-	-KİMLİK NO
-	-YAŞ
-	-NUMARA
-	-SINIF  BİLGİLERİNİ İÇERMELİDİR.
-2. ============= İŞLEMLER =============
-            1-EKLEME
-		 2-ARAMA
-		 3-LİSTELEME
-		 4-SİLME
-    Q-ÇIKIŞ
-    SEÇİMİNİZ:
-    ŞEKLİNDE BİR MENÜ OLUŞTURULMALI.
-            3. ARAMA VE SİLME İŞLEMLERİ KİMLİK NO YA GÖRE YAPILMALIDIR.
-            NOT: PROJEYİ YAPARKEN MÜMKÜN OLAN EN KISA KODLARI YAZMAK İÇİN NESNE YÖNELİMLİ
-            PROGRAMLAMANIN BİZE SAĞLADIĞI İMKANLARI KULLANMAYA DİKKAT EDİNİZ.
-    */
-
-
-
 }
